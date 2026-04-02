@@ -1,40 +1,24 @@
 import datetime
 
 
-
-def gather_name():
-        name = input("What is your name?: ")
-        while name == '':
-            print("Please enter a valid name.")
-            name = input("What is your name?: ")
-        return name
-
-def gather_age():
-        while True:
-            try:
-                age = int(input("What is your age?: "))
-            except ValueError:
-                print("Please enter a valid age.")
-            continue
-
+def gather_profile_response(name, age, colour):
+        if name == '' or name is None:
+            return {
+                'status': 'error',
+                'message': 'Invalid name must be provided',
+            }
         if age <= 0 or age > 100:
-            print("Please enter a valid age.")
+            return {
+                'status': 'error',
+                'message': 'Invalid age must be between 1 and 100',
+            }
+        if colour == '' or colour is None:
+            return {
+                'status': 'error',
+                'message': 'Invalid colour must be provided',
+            }
 
 
-def gather_fav_colour():
-        fav_colour = input("What is your favorite colour?: ")
-        while fav_colour == '':
-            print("Please enter a valid favorite colour.")
-            fav_colour = input("What is your favorite colour?: ")
-        return fav_colour
-
-
-name = gather_name()
-age = gather_age()
-colour = gather_fav_colour()
-
-
-def gather_profile_response():
         person_info = {
             "name": name,
             "age": age,
@@ -51,7 +35,7 @@ def gather_profile_response():
 
         return response
 
-print(gather_profile_response())
+print(gather_profile_response('', 10, 'blue'))
 
 
 
